@@ -72,4 +72,12 @@ public class UsuarioController
 
         return "redirect:/usuario/{id}";
     }
+
+    @RequestMapping("/{id}/delete")
+    public String delete(@PathVariable Long id)
+    {
+		usuarioRepo.deleteById(id);
+
+        return "redirect:/usuario";
+    }
 }
