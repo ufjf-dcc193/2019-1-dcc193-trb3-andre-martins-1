@@ -6,8 +6,8 @@
     </head>
     <body>
         <h1>Usuário - Alterar</h1>
-        <a th:href="@{/}">Início</a> / <a th:href="@{/usuario}">Usuário</a> / <a th:href="@{/usuario/{id}(id=*{id})}" th:text="*{id}"></a> / Atualizar<br />
-        <form th:action="@{/usuario/{id}/update(id=*{id})}" th:object=${usuario} method="POST">
+        <a th:href="@{/}">Início</a> / <a th:href="@{/usuarios}">Usuário</a> / <a th:href="@{/usuarios/{id}(id=*{id})}" th:text="*{id}"></a> / Atualizar<br />
+        <form th:action="@{/usuarios/{id}/update(id=*{id})}" th:object=${usuario} method="POST">
             <input name="id" type="hidden" th:value="*{id}" />
             <p>ID: <span th:text=*{id}></span></p>
             <label>Nome: <input name="nome" type="text" th:value="*{nome}" /></label><br />

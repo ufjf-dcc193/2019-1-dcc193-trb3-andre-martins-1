@@ -8,7 +8,7 @@
         <h1>Usuário</h1>
         <a th:href="@{/}">Início</a> / Usuário<br />
         <br />
-        <a th:href="@{/usuario/create}">Cadastrar</a><br />
+        <a th:href="@{/usuarios/create}">Cadastrar</a><br />
 
         <table>
             <thead>
@@ -23,12 +23,12 @@
             </thead>
             <tbody>
                 <tr th:each="usuario: ${usuarios}" th:object=${usuario}>
-                    <td><a th:text=*{id} th:href="@{/usuario/{id}(id=*{id})}"></a></td>
+                    <td><a th:text=*{id} th:href="@{/usuarios/{id}(id=*{id})}"></a></td>
                     <td th:text=*{nome}></td>
                     <td th:text=*{descricao}></td>
                     <td th:text=*{senha}></td>
                     <td th:text=*{email}></td>
-                    <td><a th:href="@{/usuario/{id}(id=*{id})}">Ver</a> - <a th:href="@{/usuario/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/usuario/{id}/delete(id=*{id})}">Apagar</a></td>
+                    <td><a th:href="@{/usuarios/{id}(id=*{id})}">Ver</a> - <a th:href="@{/usuarios/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/usuarios/{id}/delete(id=*{id})}">Apagar</a></td>
                 </tr>
             </tbody>
         </table>

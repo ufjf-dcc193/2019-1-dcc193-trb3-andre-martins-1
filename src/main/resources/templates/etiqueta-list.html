@@ -8,7 +8,7 @@
         <h1>Etiqueta</h1>
         <a th:href="@{/}">Início</a> / Etiqueta<br />
         <br />
-        <a th:href="@{/etiqueta/create}">Cadastrar</a><br />
+        <a th:href="@{/etiquetas/create}">Cadastrar</a><br />
 
         <table>
             <thead>
@@ -22,11 +22,11 @@
             </thead>
             <tbody>
                 <tr th:each="etiqueta: ${etiquetas}" th:object=${etiqueta}>
-                    <td><a th:text=*{id} th:href="@{/etiqueta/{id}(id=*{id})}"></a></td>
+                    <td><a th:text=*{id} th:href="@{/etiquetas/{id}(id=*{id})}"></a></td>
                     <td th:text=*{titulo}></td>
                     <td th:text=*{descricao}></td>
                     <td><a th:href="*{url}" th:text="*{url}"></a></td>
-                    <td><a th:href="@{/etiqueta/{id}(id=*{id})}">Ver</a> - <a th:href="@{/etiqueta/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/etiqueta/{id}/delete(id=*{id})}">Apagar</a></td>
+                    <td><a th:href="@{/etiquetas/{id}(id=*{id})}">Ver</a> - <a th:href="@{/etiquetas/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/etiquetas/{id}/delete(id=*{id})}">Apagar</a></td>
                 </tr>
             </tbody>
         </table>

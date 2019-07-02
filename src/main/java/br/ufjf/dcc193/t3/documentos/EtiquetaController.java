@@ -6,9 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,22 +51,30 @@ public class EtiquetaController
         return mv;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView create()
-    // {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("etiqueta-create");
-    //     mv.addObject("etiqueta", new Etiqueta());
-    //     return mv;
-    // }
+    @GetMapping("/create")
+    public ModelAndView create(HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    // @PostMapping("/create")
-    // public String create(Etiqueta etiqueta)
-    // {
-    //     etiquetaRepo.save(etiqueta);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("etiqueta-create");
+        mv.addObject("etiqueta", new Etiqueta());
+        return mv;
+    }
 
-    //     return "redirect:/etiquetas";
-    // }
+    @PostMapping("/create")
+    public String create(Etiqueta etiqueta, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
+
+        etiquetaRepo.save(etiqueta);
+
+        return "redirect:/etiquetas";
+    }
 
     // @RequestMapping("/{id}")
     // public ModelAndView read(@PathVariable Long id)
