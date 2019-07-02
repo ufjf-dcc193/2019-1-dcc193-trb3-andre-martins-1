@@ -15,8 +15,12 @@ public class DemoApplication
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
 
 		UsuarioRepository usuarioRepo = ctx.getBean(UsuarioRepository.class);
+		EtiquetaRepository etiquetaRepo = ctx.getBean(EtiquetaRepository.class);
 
 		Usuario usuario = new Usuario("Nome", "Descrição", "a", "a@a");
 		usuarioRepo.save(usuario);
+
+		Etiqueta etiqueta = new Etiqueta("Nome", "Descrição", "https://regrasdeetiqueta.com");
+		etiquetaRepo.save(etiqueta);
 	}
 }
