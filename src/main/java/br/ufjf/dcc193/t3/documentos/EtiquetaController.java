@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
@@ -76,15 +76,19 @@ public class EtiquetaController
         return "redirect:/etiquetas";
     }
 
-    // @RequestMapping("/{id}")
-    // public ModelAndView read(@PathVariable Long id)
-    // {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("etiqueta-read");
-    //     mv.addObject("etiqueta", etiquetaRepo.findById(id).get());
+    @RequestMapping("/{id}")
+    public ModelAndView read(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     return mv;
-    // }
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("etiqueta-read");
+        mv.addObject("etiqueta", etiquetaRepo.findById(id).get());
+
+        return mv;
+    }
 
     // @GetMapping("/{id}/update")
     // public ModelAndView update(@PathVariable Long id)

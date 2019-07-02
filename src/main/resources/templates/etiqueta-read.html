@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Etiqueta - Ver</title>
+    </head>
+    <body>
+        <h1>Etiqueta - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/etiquetas}">Etiqueta</a> / <span th:text="*{id}"></span><br />
+        <ul th:object="${etiqueta}">
+            <li>ID: <span th:text="*{id}"></span></li>
+            <li>Título: <span th:text="*{titulo}"></span></li>
+            <li>Descrição: <span th:text="*{descricao}"></span></li>
+            <li>URL: <a th:href="*{url}" th:text="*{url}"></a></li>
+        </ul>
+        <a th:href="@{/etiquetas/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/etiquetas/{id}/delete(id=*{id})}">Apagar</a>
+    </body>
+</html>
