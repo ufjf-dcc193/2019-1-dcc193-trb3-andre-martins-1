@@ -117,40 +117,15 @@ public class EtiquetaController
         return "redirect:/etiquetas/{id}";
     }
 
-    // @RequestMapping("/{id}/delete")
-    // public String delete(@PathVariable Long id)
-    // {
-	// 	etiquetaRepo.deleteById(id);
+    @RequestMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     return "redirect:/etiquetas";
-    // }
+		etiquetaRepo.deleteById(id);
 
-    // @GetMapping("/login")
-    // public String login()
-    // {
-    //     return "login";
-    // }
-
-    // @PostMapping("/login")
-    // public String login(@RequestParam("email") String email, @RequestParam("senha") String senha, HttpSession session)
-    // {
-    //     String destination = "/";
-
-    //     Etiqueta etiqueta = etiquetaRepo.findByEmail(email);
-    //     if (etiqueta == null || !etiqueta.checkAccess(senha))
-    //     {
-    //         // ToDo(andre:2019-06-16): Retornar uma mensagem informando que ocorreu um erro
-    //         return "redirect:/etiqueta/login";
-    //     }
-
-    //     session.setAttribute("userId", etiqueta.getId());
-    //     return "redirect:" + destination;
-    // }
-
-    // @RequestMapping("/logout")
-    // public String logout(HttpSession session)
-    // {
-    //     session.removeAttribute("userId");
-    //     return "redirect:/";
-    // }
+        return "redirect:/etiquetas";
+    }
 }
