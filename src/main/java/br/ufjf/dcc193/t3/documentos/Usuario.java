@@ -84,4 +84,10 @@ public class Usuario
     {
         return this.senha.equals(senha);
     }
+
+    @Override
+    public String toString() {
+        return "Usuario [descricao=" + descricao + ", email=" + email + ", id=" + id + ", nome=" + nome + ", senha="
+                + senha + "]";
+    }
 }

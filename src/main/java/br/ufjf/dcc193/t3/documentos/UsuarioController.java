@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController
 {
     @Autowired
@@ -44,7 +44,7 @@ public class UsuarioController
     {
         usuarioRepo.save(usuario);
 
-        return "redirect:/usuario";
+        return "redirect:/usuarios";
     }
 
     @RequestMapping("/{id}")
@@ -73,7 +73,7 @@ public class UsuarioController
     {
         usuarioRepo.save(usuario);
 
-        return "redirect:/usuario/{id}";
+        return "redirect:/usuarios/{id}";
     }
 
     @RequestMapping("/{id}/delete")
@@ -81,7 +81,7 @@ public class UsuarioController
     {
 		usuarioRepo.deleteById(id);
 
-        return "redirect:/usuario";
+        return "redirect:/usuarios";
     }
 
     @GetMapping("/login")
@@ -93,7 +93,7 @@ public class UsuarioController
     @PostMapping("/login")
     public String login(@RequestParam("email") String email, @RequestParam("senha") String senha, HttpSession session)
     {
-        String destination = "/profile/";
+        String destination = "/";
 
         Usuario usuario = usuarioRepo.findByEmail(email);
         if (usuario == null || !usuario.checkAccess(senha))
@@ -104,5 +104,12 @@ public class UsuarioController
 
         session.setAttribute("userId", usuario.getId());
         return "redirect:" + destination;
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session)
+    {
+        session.removeAttribute("userId");
+        return "redirect:/";
     }
 }
