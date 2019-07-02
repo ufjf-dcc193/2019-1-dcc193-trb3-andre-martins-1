@@ -20,10 +20,10 @@ public class UsuarioController
     @RequestMapping({"", "/", "/index"})
     public ModelAndView list()
     {
-        List<Usuario> avaliadores = usuarioRepo.findAll();
+        List<Usuario> usuarios = usuarioRepo.findAll();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("usuario-list");
-        mv.addObject("usuarios", avaliadores);
+        mv.addObject("usuarios", usuarios);
         return mv;
     }
 
@@ -52,5 +52,24 @@ public class UsuarioController
         mv.addObject("usuario", usuarioRepo.findById(id).get());
 
         return mv;
+    }
+
+    @GetMapping("/{id}/update")
+    public ModelAndView update(@PathVariable Long id)
+    {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("usuario-update");
+        Usuario usuario = usuarioRepo.findById(id).get();
+        mv.addObject("usuario", usuario);
+
+        return mv;
+    }
+
+    @PostMapping("/{id}/update")
+    public String update(Usuario usuario)
+    {
+        usuarioRepo.save(usuario);
+
+        return "redirect:/usuario/{id}";
     }
 }
