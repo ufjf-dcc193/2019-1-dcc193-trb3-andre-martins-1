@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Usuário - Ver</title>
+    </head>
+    <body>
+        <h1>Usuário - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/usuario}">Usuário</a> / <span th:text="*{id}"></span><br />
+        <ul th:object=${usuario}>
+            <li>ID: <span th:text=*{id}></span></li>
+            <li>Nome: <span th:text=*{nome}></span></li>
+            <li>Descrição: <span th:text=*{descricao}></span></li>
+            <li>Senha: <span th:text=*{senha}></span></li>
+            <li>E-mail: <span th:text=*{email}></span></li>
+        </ul>
+        <a th:href="@{/usuario/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/usuario/{id}/delete(id=*{id})}">Apagar</a>
+    </body>
+</html>
