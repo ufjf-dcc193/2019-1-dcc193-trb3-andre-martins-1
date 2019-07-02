@@ -90,24 +90,32 @@ public class EtiquetaController
         return mv;
     }
 
-    // @GetMapping("/{id}/update")
-    // public ModelAndView update(@PathVariable Long id)
-    // {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("etiqueta-update");
-    //     Etiqueta etiqueta = etiquetaRepo.findById(id).get();
-    //     mv.addObject("etiqueta", etiqueta);
+    @GetMapping("/{id}/update")
+    public ModelAndView update(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     return mv;
-    // }
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("etiqueta-update");
+        Etiqueta etiqueta = etiquetaRepo.findById(id).get();
+        mv.addObject("etiqueta", etiqueta);
 
-    // @PostMapping("/{id}/update")
-    // public String update(Etiqueta etiqueta)
-    // {
-    //     etiquetaRepo.save(etiqueta);
+        return mv;
+    }
 
-    //     return "redirect:/etiquetas/{id}";
-    // }
+    @PostMapping("/{id}/update")
+    public String update(Etiqueta etiqueta, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
+
+        etiquetaRepo.save(etiqueta);
+
+        return "redirect:/etiquetas/{id}";
+    }
 
     // @RequestMapping("/{id}/delete")
     // public String delete(@PathVariable Long id)
