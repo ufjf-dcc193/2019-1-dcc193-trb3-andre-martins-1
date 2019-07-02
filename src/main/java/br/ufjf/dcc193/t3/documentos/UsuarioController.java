@@ -2,12 +2,15 @@ package br.ufjf.dcc193.t3.documentos;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -16,7 +19,7 @@ public class UsuarioController
 {
     @Autowired
     UsuarioRepository usuarioRepo;
-    
+
     @RequestMapping({"", "/", "/index"})
     public ModelAndView list()
     {
@@ -79,5 +82,27 @@ public class UsuarioController
 		usuarioRepo.deleteById(id);
 
         return "redirect:/usuario";
+    }
+
+    @GetMapping("/login")
+    public String login()
+    {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("email") String email, @RequestParam("senha") String senha, HttpSession session)
+    {
+        String destination = "/profile/";
+
+        Usuario usuario = usuarioRepo.findByEmail(email);
+        if (usuario == null || !usuario.checkAccess(senha))
+        {
+            // ToDo(andre:2019-06-16): Retornar uma mensagem informando que ocorreu um erro
+            return "redirect:/usuario/login";
+        }
+
+        session.setAttribute("userId", usuario.getId());
+        return "redirect:" + destination;
     }
 }

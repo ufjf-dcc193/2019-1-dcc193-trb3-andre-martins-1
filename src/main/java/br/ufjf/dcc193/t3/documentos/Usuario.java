@@ -25,7 +25,7 @@ public class Usuario
 
     public Usuario()
     {
-        
+
     }
     public Usuario(String nome, String descricao, String senha, String email)
     {
@@ -80,5 +80,8 @@ public class Usuario
         this.email = email;
     }
 
-    
+    public Boolean checkAccess(String senha)
+    {
+        return this.senha.equals(senha);
+    }
 }
