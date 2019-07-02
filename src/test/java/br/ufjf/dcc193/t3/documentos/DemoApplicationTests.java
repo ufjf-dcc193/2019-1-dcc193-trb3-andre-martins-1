@@ -1,4 +1,4 @@
-package br.ufjf.dcc193.t3.documentos.documentos;
+package br.ufjf.dcc193.t3.documentos;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

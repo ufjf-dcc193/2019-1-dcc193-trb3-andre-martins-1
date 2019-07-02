@@ -1,4 +1,4 @@
-package br.ufjf.dcc193.t3.documentos.documentos;
+package br.ufjf.dcc193.t3.documentos;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
