@@ -89,32 +89,35 @@ public class ItemController
         return mv;
     }
 
-    // @GetMapping("/{id}/update")
-    // public ModelAndView update(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @GetMapping("/{id}/update")
+    public ModelAndView update(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("item-update");
-    //     Item item = itemRepo.findById(id).get();
-    //     mv.addObject("item", item);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("item-update");
+        Item item = itemRepo.findById(id).get();
+        mv.addObject("item", item);
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
-    // @PostMapping("/{id}/update")
-    // public String update(Item item, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @PostMapping("/{id}/update")
+    public String update(Item item, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     itemRepo.save(item);
+        Item oldItem = itemRepo.findById(item.getId()).get();
+        oldItem.setTitulo(item.getTitulo());
 
-    //     return "redirect:/itens/{id}";
-    // }
+        itemRepo.save(oldItem);
+
+        return "redirect:/itens/{id}";
+    }
 
     // @RequestMapping("/{id}/delete")
     // public String delete(@PathVariable Long id, HttpSession session)
