@@ -1,5 +1,7 @@
 package br.ufjf.dcc193.t3.documentos;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,35 +95,38 @@ public class AnotacaoItemController
         return mv;
     }
 
-    // @GetMapping("/{id}/update")
-    // public ModelAndView update(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @GetMapping("/{aid}/update")
+    public ModelAndView update(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("anotacao-update");
-    //     Anotacao anotacao = anotacaoRepo.findById(id).get();
-    //     mv.addObject("anotacao", anotacao);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("anotacao-item-update");
+        Anotacao anotacao = anotacaoRepo.findById(aid).get();
+        mv.addObject("anotacao", anotacao);
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
-    // @PostMapping("/{id}/update")
-    // public String update(Anotacao anotacao, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @PostMapping("/{aid}/update")
+    public String update(Anotacao anotacao, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     Anotacao oldAnotacao = anotacaoRepo.findById(anotacao.getId()).get();
-    //     oldAnotacao.setTitulo(anotacao.getTitulo());
+        Anotacao oldAnotacao = anotacaoRepo.findById(anotacao.getId()).get();
+        oldAnotacao.setTitulo(anotacao.getTitulo());
+        oldAnotacao.setDescricao(anotacao.getDescricao());
+        oldAnotacao.setUrl(anotacao.getUrl());
+        oldAnotacao.setDataAlteracao(new Date(System.currentTimeMillis()));
 
-    //     anotacaoRepo.save(oldAnotacao);
+        anotacaoRepo.save(oldAnotacao);
 
-    //     return "redirect:/anotacoes/{id}";
-    // }
+        return "redirect:/itens/{id}/anotacoes/{aid}";
+    }
 
     // @RequestMapping("/{id}/delete")
     // public String delete(@PathVariable Long id, HttpSession session)

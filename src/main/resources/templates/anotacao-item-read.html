@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Item - Ver</h1>
-        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/anotacoes(id=${id})}">Anotações</a> / <a th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=${aid})}" th:text="*{aid}"></a><br />
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/anotacoes(id=${id})}">Anotações</a> / <span th:text="*{aid}"></span><br />
 
         <ul th:object="${anotacao}">
             <li>ID: <span th:text="*{id}"></span></li>
@@ -17,6 +17,6 @@
             <li>Data criação: <span th:text="*{dataCriacao}"></span></li>
             <li>Data alteração: <span th:text="*{dataAlteracao}"></span></li>
         </ul>
-        <a th:href="@{/itens/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/delete(id=*{id})}">Apagar</a>
+        <a th:href="@{/itens/{id}/anotacoes/{aid}/update(id=${id}, aid=${aid})}">Alterar</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/delete(id=${id}, aid=${aid})}">Apagar</a>
     </body>
 </html>

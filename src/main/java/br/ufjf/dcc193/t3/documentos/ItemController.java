@@ -163,7 +163,7 @@ public class ItemController
         item.addEtiqueta(etiqueta);
         itemRepo.save(item);
 
-        return "redirect:/itens/" + id + "/etiquetas";
+        return "redirect:/itens/{id}/etiquetas";
     }
 
     @RequestMapping("/{id}/etiquetas/{eid}/remove")
@@ -178,6 +178,6 @@ public class ItemController
         item.removeEtiqueta(etiqueta);
         itemRepo.save(item);
 
-        return "redirect:/itens/" + id + "/etiquetas";
+        return "redirect:/itens/{id}/etiquetas";
     }
 }
