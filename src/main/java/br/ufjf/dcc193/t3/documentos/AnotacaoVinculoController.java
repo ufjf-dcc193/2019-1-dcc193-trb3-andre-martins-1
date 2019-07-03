@@ -81,19 +81,19 @@ public class AnotacaoVinculoController
         return "redirect:/itens/{id}/vinculos/{vid}/anotacoes";
     }
 
-    // @RequestMapping("/{aid}")
-    // public ModelAndView read(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @RequestMapping("/{aid}")
+    public ModelAndView read(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long aid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("anotacao-vinculo-read");
-    //     mv.addObject("anotacao", anotacaoRepo.findById(aid).get());
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("anotacao-vinculo-read");
+        mv.addObject("anotacao", anotacaoRepo.findById(aid).get());
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
     // @GetMapping("/{aid}/update")
     // public ModelAndView update(@PathVariable Long id, @PathVariable Long aid, HttpSession session)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vínculo - Ver</title>
+    </head>
+    <body>
+        <h1>Vínculo - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos/(id=*{id})}">Vínculos</a> / <a th:href="@{/itens/{id}/vinculos/{vid}(id=*{id}, vid=*{vid})}" th:text="*{vid}"></a> / <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes(id=${id}, vid=*{vid})}">Anotações</a> / <span th:text="*{aid}"></span><br />
+
+        <ul th:object="${anotacao}">
+            <li>ID: <span th:text="*{id}"></span></li>
+            <li>Título: <span th:text="*{titulo}"></span></li>
+            <li>Descrição: <span th:text="*{descricao}"></span></li>
+            <li>URL: <a th:href="*{url}" th:text="*{url}"></a></li>
+            <li>Criador: <span th:text="*{criador.nome}"></span></li>
+            <li>Data criação: <span th:text="*{dataCriacao}"></span></li>
+            <li>Data alteração: <span th:text="*{dataAlteracao}"></span></li>
+        </ul>
+        <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/{aid}/update(id=${id}, vid=${vid}, aid=${aid})}">Alterar</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/{aid}/delete(id=${id}, vid=${vid}, aid=${aid})}">Apagar</a>
+    </body>
+</html>
