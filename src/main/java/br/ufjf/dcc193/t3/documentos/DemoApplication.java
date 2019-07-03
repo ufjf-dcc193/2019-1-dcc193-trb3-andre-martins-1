@@ -16,11 +16,16 @@ public class DemoApplication
 
 		UsuarioRepository usuarioRepo = ctx.getBean(UsuarioRepository.class);
 		EtiquetaRepository etiquetaRepo = ctx.getBean(EtiquetaRepository.class);
+		ItemRepository itemRepo = ctx.getBean(ItemRepository.class);
 
 		Usuario usuario = new Usuario("Nome", "Descrição", "a", "a@a");
 		usuarioRepo.save(usuario);
 
 		Etiqueta etiqueta = new Etiqueta("Nome", "Descrição", "https://regrasdeetiqueta.com");
 		etiquetaRepo.save(etiqueta);
+
+		Item item = new Item("Título");
+		item.addEtiqueta(new Etiqueta("Etiqueta", "Descrição da etiqueta", "https://etiquetas.com/about.html"), true);
+		itemRepo.save(item);
 	}
 }

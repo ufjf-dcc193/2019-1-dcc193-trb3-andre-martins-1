@@ -1,13 +1,12 @@
 package br.ufjf.dcc193.t3.documentos;
 
-// import java.util.List;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.JoinTable;
-// import javax.persistence.ManyToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Etiqueta
@@ -20,9 +19,8 @@ public class Etiqueta
     private String descricao;
     private String url;
 
-    // @ManyToMany(mappedBy="itens")
-    // @JoinTable
-    // private List<Item> item;
+    @ManyToMany(mappedBy="etiquetas")
+    private List<Item> itens;
 
     public Etiqueta()
     {
@@ -68,5 +66,20 @@ public class Etiqueta
     public void setUrl(String url)
     {
         this.url = url;
+    }
+
+    public List<Item> getItens()
+    {
+        return itens;
+    }
+    public void addItem(Item item)
+    {
+        this.itens.add(item);
+    }
+    public void addItem(Item item, Boolean reverseAdd)
+    {
+        this.itens.add(item);
+        if(reverseAdd)
+            item.addEtiqueta(this);
     }
 }
