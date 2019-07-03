@@ -4,9 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,30 +51,33 @@ public class AnotacaoItemController
         return mv;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView create(HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @GetMapping("/create")
+    public ModelAndView create(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("anotacao-create");
-    //     mv.addObject("anotacao", new Anotacao());
-    //     return mv;
-    // }
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("anotacao-item-create");
+        mv.addObject("anotacao", new Anotacao());
+        return mv;
+    }
 
-    // @PostMapping("/create")
-    // public String create(Anotacao anotacao, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @PostMapping("/create")
+    public String create(@PathVariable Long id, Anotacao anotacao, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     anotacaoRepo.save(anotacao);
+        Item item = itemRepo.findById(id).get();
+        anotacao.setItem(item);
+        anotacao.setCriador(usuario);
+        anotacaoRepo.save(anotacao);
 
-    //     return "redirect:/anotacoes";
-    // }
+        return "redirect:/itens/{id}/anotacoes";
+    }
 
     // @RequestMapping("/{id}")
     // public ModelAndView read(@PathVariable Long id, HttpSession session)

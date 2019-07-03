@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Anotação - Cadastrar</title>
+    </head>
+    <body>
+        <h1>Item - Anotação - Cadastrar</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/anotacoes(id=${id})}">Anotações</a> / Criar anotação<br />
+
+        <form th:action="@{/itens/{id}/anotacoes/create(id=${id})}" th:object=${anotacao} method="POST">
+            <label>Título: <input name="titulo" type="text" th:value="*{titulo}" /></label><br />
+            <label>Descrição: <input name="descricao" type="text" th:value="*{descricao}" /></label><br />
+            <label>URL: <input name="url" type="url" th:value="*{url}" /></label><br />
+            <button type="submit">Criar anotação</button>
+        </form>
+    </body>
+</html>

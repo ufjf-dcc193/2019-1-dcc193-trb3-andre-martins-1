@@ -37,6 +37,8 @@ public class Anotacao
 
     public Anotacao()
     {
+        this.dataCriacao = new Date(System.currentTimeMillis());
+        this.dataAlteracao = new Date(System.currentTimeMillis());
     }
     public Anotacao(String titulo, String descricao, String url)
     {

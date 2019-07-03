@@ -17,6 +17,7 @@
                     <th>Título</th>
                     <th>Descrição</th>
                     <th>URL</th>
+                    <th>Criador</th>
                     <th>Data criação</th>
                     <th>Data alteração</th>
                     <th>Ações</th>
@@ -28,6 +29,7 @@
                     <td th:text=*{titulo}></td>
                     <td th:text=*{descricao}></td>
                     <td><a th:href="*{url}" th:text="*{url}"></a></td>
+                    <td th:text=*{criador.nome}></td>
                     <td th:text=*{dataCriacao}></td>
                     <td th:text=*{dataAlteracao}></td>
                     <td><a th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/update(id=${id}, aid=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/delete(id=${id}, aid=*{id})}">Apagar</a></td>
