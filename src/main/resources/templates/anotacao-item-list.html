@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Anotações</title>
+    </head>
+    <body>
+        <h1>Item - Anotações</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / Anotações<br />
+        <br />
+        <a th:href="@{/itens/{id}/anotacoes/create(id=${id})}">Criar anotação</a><br />
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>URL</th>
+                    <th>Data criação</th>
+                    <th>Data alteração</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="anotacao: ${anotacoes}" th:object=${anotacao}>
+                    <td><a th:text=*{id} th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=*{id})}"></a></td>
+                    <td th:text=*{titulo}></td>
+                    <td th:text=*{descricao}></td>
+                    <td><a th:href="*{url}" th:text="*{url}"></a></td>
+                    <td th:text=*{dataCriacao}></td>
+                    <td th:text=*{dataAlteracao}></td>
+                    <td><a th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/update(id=${id}, aid=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/delete(id=${id}, aid=*{id})}">Apagar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

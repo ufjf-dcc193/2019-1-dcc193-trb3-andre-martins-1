@@ -32,14 +32,19 @@ public class DemoApplication
 		Etiqueta etiqueta3 = new Etiqueta("Et.", "Desc.", "https://re.et.com");
 		etiquetaRepo.save(etiqueta3);
 
-		Item item = new Item("Título");
-		itemRepo.save(item);
+		Item item1 = new Item("Título");
+		itemRepo.save(item1);
+		item1.addEtiqueta(etiqueta1);
+		itemRepo.save(item1);
 
-		item.addEtiqueta(etiqueta1);
-		itemRepo.save(item);
+		Item item2 = new Item("Título");
+		itemRepo.save(item2);
+		item2.addEtiqueta(etiqueta1);
+		itemRepo.save(item2);
 
 		Anotacao anotacao = new Anotacao("Título", "Descrição", "https://anotacao.com");
 		anotacao.setCriador(usuario1);
+		anotacao.setItem(item1);
 		anotacaoRepo.save(anotacao);
 	}
 }
