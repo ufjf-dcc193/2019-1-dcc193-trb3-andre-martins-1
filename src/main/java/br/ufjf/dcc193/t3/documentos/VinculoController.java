@@ -87,19 +87,19 @@ public class VinculoController
         return "redirect:/itens/{id}/vinculos";
     }
 
-    // @RequestMapping("/{id}")
-    // public ModelAndView read(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @RequestMapping("/{vid}")
+    public ModelAndView read(@PathVariable Long id, @PathVariable Long vid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("vinculo-read");
-    //     mv.addObject("vinculo", vinculoRepo.findById(id).get());
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("vinculo-read");
+        mv.addObject("vinculo", vinculoRepo.findById(vid).get());
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
     // @GetMapping("/{id}/update")
     // public ModelAndView update(@PathVariable Long id, HttpSession session)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vínculo - Ver</title>
+    </head>
+    <body>
+        <h1>Vínculo - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos(id=*{id})}">Vínculos</a> / <a th:href="@{/itens/{id}/vinculos/{vid}(id=*{id}, vid=*{vid})}" th:text="*{vid}"></a><br />
+        <ul th:object="${vinculo}">
+            <li>ID: <span th:text="*{id}"></span></li>
+            <li>Título origem: <a th:href="@{/itens/{id}(id=*{itemOrigem.id})}" th:text="*{itemOrigem.titulo}"></a></li>
+            <li>Título destino: <a th:href="@{/itens/{id}(id=*{itemDestino.id})}" th:text="*{itemDestino.titulo}"></a></li>
+            <li>Etiquetas:
+                <ul>
+                    <li th:each="etiqueta: *{etiquetas}" th:text=${etiqueta.titulo}></li>
+                </ul>
+            </li>
+        </ul>
+        <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes(id=*{id}, vid=*{vid})}">Ver anotações</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/etiquetas(id=*{id}, vid=*{vid})}">Alterar etiquetas</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/delete(id=*{id}, vid=*{vid})}">Apagar</a>
+    </body>
+</html>
