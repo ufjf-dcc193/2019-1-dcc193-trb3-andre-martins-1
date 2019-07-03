@@ -6,9 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,33 +53,33 @@ public class AnotacaoVinculoController
         return mv;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView create(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @GetMapping("/create")
+    public ModelAndView create(@PathVariable Long id, @PathVariable Long vid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("anotacao-vinculo-create");
-    //     mv.addObject("anotacao", new Anotacao());
-    //     return mv;
-    // }
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("anotacao-vinculo-create");
+        mv.addObject("anotacao", new Anotacao());
+        return mv;
+    }
 
-    // @PostMapping("/create")
-    // public String create(@PathVariable Long id, Anotacao anotacao, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @PostMapping("/create")
+    public String create(@PathVariable Long id, @PathVariable Long vid, Anotacao anotacao, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     Vinculo vinculo = vinculoRepo.findById(vid).get();
-    //     anotacao.setVinculo(vinculo);
-    //     anotacao.setCriador(usuario);
-    //     anotacaoRepo.save(anotacao);
+        Vinculo vinculo = vinculoRepo.findById(vid).get();
+        anotacao.setVinculo(vinculo);
+        anotacao.setCriador(usuario);
+        anotacaoRepo.save(anotacao);
 
-    //     return "redirect:/vinculos/{id}/anotacoes";
-    // }
+        return "redirect:/itens/{id}/vinculos/{vid}/anotacoes";
+    }
 
     // @RequestMapping("/{aid}")
     // public ModelAndView read(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
@@ -125,7 +125,7 @@ public class AnotacaoVinculoController
 
     //     anotacaoRepo.save(oldAnotacao);
 
-    //     return "redirect:/vinculos/{id}/anotacoes/{aid}";
+    //     return "redirect:/itens/{id}/vinculos/{vid}/anotacoes/{aid}";
     // }
 
     // @RequestMapping("/{aid}/delete")
@@ -137,6 +137,6 @@ public class AnotacaoVinculoController
 
 	// 	anotacaoRepo.deleteById(aid);
 
-    //     return "redirect:/vinculos/{id}/anotacoes";
+    //     return "redirect:/itens/{id}/vinculos/{vid}/anotacoes";
     // }
 }

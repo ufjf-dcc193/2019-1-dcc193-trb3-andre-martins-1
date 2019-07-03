@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Vínculo - Ver</h1>
-        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos(id=*{id})}">Vínculos</a> / <a th:href="@{/itens/{id}/vinculos/{vid}(id=*{id}, vid=*{vid})}" th:text="*{vid}"></a><br />
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos(id=*{id})}">Vínculos</a> / <span th:text="*{vid}"></span><br />
         <ul th:object="${vinculo}">
             <li>ID: <span th:text="*{id}"></span></li>
             <li>Título origem: <a th:href="@{/itens/{id}(id=*{itemOrigem.id})}" th:text="*{itemOrigem.titulo}"></a></li>

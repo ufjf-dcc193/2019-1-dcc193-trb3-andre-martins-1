@@ -121,4 +121,13 @@ public class Anotacao
     {
         this.item = item;
     }
+
+    public Vinculo getVinculo()
+    {
+        return vinculo;
+    }
+    public void setVinculo(Vinculo vinculo)
+    {
+        this.vinculo = vinculo;
+    }
 }

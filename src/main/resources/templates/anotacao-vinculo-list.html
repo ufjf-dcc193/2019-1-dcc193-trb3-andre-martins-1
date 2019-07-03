@@ -6,9 +6,9 @@
     </head>
     <body>
         <h1>Vínculo - Anotações</h1>
-        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos/(id=*{id})}">Vínculos</a> / <a th:href="@{/itens/{id}/vinculos/{vid}(id=*{id}, vid=*{vid})}" th:text="*{vid}"></a><br />
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos/(id=*{id})}">Vínculos</a> / <a th:href="@{/itens/{id}/vinculos/{vid}(id=*{id}, vid=*{vid})}" th:text="*{vid}"></a> / Anotações<br />
         <br />
-        <a th:href="@{/itens/{id}/anotacoes/create(id=${id})}">Criar anotação</a><br />
+        <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/create(id=${id}, vid=*{vid})}">Criar anotação</a><br />
 
         <table>
             <thead>
@@ -25,14 +25,14 @@
             </thead>
             <tbody>
                 <tr th:each="anotacao: ${anotacoes}" th:object=${anotacao}>
-                    <td><a th:text=*{id} th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=*{id})}"></a></td>
+                    <td><a th:text=*{id} th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/{aid}(id=${id}, vid=${vid}, aid=*{id})}"></a></td>
                     <td th:text=*{titulo}></td>
                     <td th:text=*{descricao}></td>
                     <td><a th:href="*{url}" th:text="*{url}"></a></td>
                     <td th:text=*{criador.nome}></td>
                     <td th:text=*{dataCriacao}></td>
                     <td th:text=*{dataAlteracao}></td>
-                    <td><a th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/update(id=${id}, aid=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/anotacoes/{aid}/delete(id=${id}, aid=*{id})}">Apagar</a></td>
+                    <td><a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/{aid}(id=${id}, vid=${vid}, aid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/{aid}/update(id=${id}, vid=${vid}, aid=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes/{aid}/delete(id=${id}, vid=${vid}, aid=*{id})}">Apagar</a></td>
                 </tr>
             </tbody>
         </table>

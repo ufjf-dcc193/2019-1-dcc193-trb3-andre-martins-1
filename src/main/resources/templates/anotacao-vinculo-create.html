@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vínculo - Anotação - Cadastrar</title>
+    </head>
+    <body>
+        <h1>Vínculo - Anotação - Cadastrar</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos/(id=*{id})}">Vínculos</a> / <a th:href="@{/itens/{id}/vinculos/{vid}(id=*{id}, vid=*{vid})}" th:text="*{vid}"></a> / <a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes(id=${id}, vid=*{vid})}">Anotações</a> / Criar anotação<br />
+
+        <form th:action="@{/itens/{id}/vinculos/{vid}/anotacoes/create(id=${id}, vid=${vid})}" th:object=${anotacao} method="POST">
+            <label>Título: <input name="titulo" type="text" th:value="*{titulo}" /></label><br />
+            <label>Descrição: <input name="descricao" type="text" th:value="*{descricao}" /></label><br />
+            <label>URL: <input name="url" type="url" th:value="*{url}" /></label><br />
+            <button type="submit">Criar anotação</button>
+        </form>
+    </body>
+</html>
