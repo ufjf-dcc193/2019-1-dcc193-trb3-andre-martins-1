@@ -1,6 +1,6 @@
 package br.ufjf.dcc193.t3.documentos;
 
-// import java.sql.Date;
+import java.sql.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -95,41 +95,41 @@ public class AnotacaoVinculoController
         return mv;
     }
 
-    // @GetMapping("/{aid}/update")
-    // public ModelAndView update(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @GetMapping("/{aid}/update")
+    public ModelAndView update(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long aid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("anotacao-vinculo-update");
-    //     Anotacao anotacao = anotacaoRepo.findById(aid).get();
-    //     mv.addObject("anotacao", anotacao);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("anotacao-vinculo-update");
+        Anotacao anotacao = anotacaoRepo.findById(aid).get();
+        mv.addObject("anotacao", anotacao);
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
-    // @PostMapping("/{aid}/update")
-    // public String update(Anotacao anotacao, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @PostMapping("/{aid}/update")
+    public String update(Anotacao anotacao, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     Anotacao oldAnotacao = anotacaoRepo.findById(anotacao.getId()).get();
-    //     oldAnotacao.setTitulo(anotacao.getTitulo());
-    //     oldAnotacao.setDescricao(anotacao.getDescricao());
-    //     oldAnotacao.setUrl(anotacao.getUrl());
-    //     oldAnotacao.setDataAlteracao(new Date(System.currentTimeMillis()));
+        Anotacao oldAnotacao = anotacaoRepo.findById(anotacao.getId()).get();
+        oldAnotacao.setTitulo(anotacao.getTitulo());
+        oldAnotacao.setDescricao(anotacao.getDescricao());
+        oldAnotacao.setUrl(anotacao.getUrl());
+        oldAnotacao.setDataAlteracao(new Date(System.currentTimeMillis()));
 
-    //     anotacaoRepo.save(oldAnotacao);
+        anotacaoRepo.save(oldAnotacao);
 
-    //     return "redirect:/itens/{id}/vinculos/{vid}/anotacoes/{aid}";
-    // }
+        return "redirect:/itens/{id}/vinculos/{vid}/anotacoes/{aid}";
+    }
 
     // @RequestMapping("/{aid}/delete")
-    // public String delete(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
+    // public String delete(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long aid, HttpSession session)
     // {
     //     Usuario usuario = getUsuario(session);
     //     if (usuario == null)
