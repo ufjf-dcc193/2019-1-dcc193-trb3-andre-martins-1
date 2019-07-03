@@ -31,9 +31,9 @@ public class Anotacao
     @JoinColumn
     private Item item;
 
-    // @ManyToOne
-    // @JoinColumn
-    // private Vinculo vinculo;
+    @ManyToOne
+    @JoinColumn
+    private Vinculo vinculo;
 
     public Anotacao()
     {

@@ -28,11 +28,11 @@ public class Item
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Anotacao> anotacoes;
 
-    // @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    // private List<Vinculo> vinculosOrigem;
+    @OneToMany(mappedBy = "itemOrigem", cascade = CascadeType.ALL)
+    private List<Vinculo> vinculosOrigem;
 
-    // @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    // private List<Vinculo> vinculosDestino;
+    @OneToMany(mappedBy = "itemDestino", cascade = CascadeType.ALL)
+    private List<Vinculo> vinculosDestino;
 
     public Item()
     {

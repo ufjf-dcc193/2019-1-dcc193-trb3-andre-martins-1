@@ -24,6 +24,9 @@ public class Etiqueta
     @ManyToMany(mappedBy="etiquetas", cascade = CascadeType.PERSIST)
     private List<Item> itens;
 
+    @ManyToMany(mappedBy="etiquetas", cascade = CascadeType.PERSIST)
+    private List<Vinculo> vinculos;
+
     public Etiqueta()
     {
     }
