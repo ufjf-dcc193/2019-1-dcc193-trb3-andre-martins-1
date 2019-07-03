@@ -17,9 +17,13 @@ public class DemoApplication
 		UsuarioRepository usuarioRepo = ctx.getBean(UsuarioRepository.class);
 		EtiquetaRepository etiquetaRepo = ctx.getBean(EtiquetaRepository.class);
 		ItemRepository itemRepo = ctx.getBean(ItemRepository.class);
+		AnotacaoRepository anotacaoRepo = ctx.getBean(AnotacaoRepository.class);
 
-		Usuario usuario = new Usuario("Nome", "Descrição", "a", "a@a");
-		usuarioRepo.save(usuario);
+		Usuario usuario1 = new Usuario("André", "Eu", "a", "a@a");
+		usuarioRepo.save(usuario1);
+
+		Usuario usuario2 = new Usuario("Nome", "Descrição", "b", "b@b");
+		usuarioRepo.save(usuario2);
 
 		Etiqueta etiqueta1 = new Etiqueta("Nome", "Descrição", "https://regrasdeetiqueta.com");
 		etiquetaRepo.save(etiqueta1);
@@ -33,5 +37,9 @@ public class DemoApplication
 
 		item.addEtiqueta(etiqueta1);
 		itemRepo.save(item);
+
+		Anotacao anotacao = new Anotacao("Título", "Descrição", "https://anotacao.com");
+		anotacao.setCriador(usuario1);
+		anotacaoRepo.save(anotacao);
 	}
 }

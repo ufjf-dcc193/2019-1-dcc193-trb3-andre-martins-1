@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-// import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Item
@@ -25,16 +25,13 @@ public class Item
     @JoinTable
     private List<Etiqueta> etiquetas;
 
-    // @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    // @JoinTable
-    // private List<Anotacao> anotacoes;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<Anotacao> anotacoes;
 
     // @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    // @JoinTable
     // private List<Vinculo> vinculosOrigem;
 
     // @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    // @JoinTable
     // private List<Vinculo> vinculosDestino;
 
     public Item()
@@ -69,7 +66,7 @@ public class Item
     {
         return etiquetas;
     }
-    public void setEtiqueta(List<Etiqueta> etiquetas)
+    public void setEtiquetas(List<Etiqueta> etiquetas)
     {
         this.etiquetas = etiquetas;
     }
@@ -80,5 +77,14 @@ public class Item
     public void removeEtiqueta(Etiqueta etiqueta)
     {
         this.etiquetas.remove(etiqueta);
+    }
+
+    public List<Anotacao> getAnotacoes()
+    {
+        return this.anotacoes;
+    }
+    public void setAnotacoes(List<Anotacao> anotacoes)
+    {
+        this.anotacoes = anotacoes;
     }
 }

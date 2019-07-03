@@ -1,13 +1,13 @@
 package br.ufjf.dcc193.t3.documentos;
 
-// import java.util.List;
+import java.util.List;
 
-// import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Usuario
@@ -21,8 +21,8 @@ public class Usuario
     private String senha;
     private String email;
 
-    // @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    // private List<Anotacao> anotacoes;
+    @OneToMany(mappedBy = "criador", cascade = CascadeType.ALL)
+    private List<Anotacao> anotacoes;
 
     public Usuario()
     {
@@ -79,6 +79,15 @@ public class Usuario
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public List<Anotacao> getAnotacoes()
+    {
+        return this.anotacoes;
+    }
+    public void setAnotacoes(List<Anotacao> anotacoes)
+    {
+        this.anotacoes = anotacoes;
     }
 
     public Boolean checkAccess(String senha)
