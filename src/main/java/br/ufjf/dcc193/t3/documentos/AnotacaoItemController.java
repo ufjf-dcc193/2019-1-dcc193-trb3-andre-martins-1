@@ -79,19 +79,19 @@ public class AnotacaoItemController
         return "redirect:/itens/{id}/anotacoes";
     }
 
-    // @RequestMapping("/{id}")
-    // public ModelAndView read(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @RequestMapping("/{aid}")
+    public ModelAndView read(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("anotacao-read");
-    //     mv.addObject("anotacao", anotacaoRepo.findById(id).get());
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("anotacao-item-read");
+        mv.addObject("anotacao", anotacaoRepo.findById(aid).get());
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
     // @GetMapping("/{id}/update")
     // public ModelAndView update(@PathVariable Long id, HttpSession session)

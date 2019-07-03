@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Ver</title>
+    </head>
+    <body>
+        <h1>Item - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/anotacoes(id=${id})}">Anotações</a> / <a th:href="@{/itens/{id}/anotacoes/{aid}(id=${id}, aid=${aid})}" th:text="*{aid}"></a><br />
+
+        <ul th:object="${anotacao}">
+            <li>ID: <span th:text="*{id}"></span></li>
+            <li>Título: <span th:text="*{titulo}"></span></li>
+            <li>Descrição: <span th:text="*{descricao}"></span></li>
+            <li>URL: <a th:href="*{url}" th:text="*{url}"></a></li>
+            <li>Criador: <span th:text="*{criador.nome}"></span></li>
+            <li>Data criação: <span th:text="*{dataCriacao}"></span></li>
+            <li>Data alteração: <span th:text="*{dataAlteracao}"></span></li>
+        </ul>
+        <a th:href="@{/itens/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/delete(id=*{id})}">Apagar</a>
+    </body>
+</html>
