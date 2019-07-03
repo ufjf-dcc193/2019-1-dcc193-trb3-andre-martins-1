@@ -15,6 +15,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
+                    <th>Etiquetas</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                 <tr th:each="item: ${itens}" th:object=${item}>
                     <td><a th:text=*{id} th:href="@{/itens/{id}(id=*{id})}"></a></td>
                     <td th:text=*{titulo}></td>
+                    <td><a th:href="@{/itens/{id}/etiquetas(id=*{id})}">Alterar etiquetas</a></td>
                     <td><a th:href="@{/itens/{id}(id=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/delete(id=*{id})}">Apagar</a></td>
                 </tr>
             </tbody>

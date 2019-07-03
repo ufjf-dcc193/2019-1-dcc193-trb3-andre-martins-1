@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item</title>
+    </head>
+    <body>
+        <h1>Item</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / Etiquetas<br />
+        <br />
+        <a th:href="@{/itens/create}">Cadastrar</a><br />
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="etiqueta: ${etiquetas}" th:object=${etiqueta}>
+                    <td><a th:text=*{id} th:href="@{/etiquetas/{id}(id=*{id})}"></a></td>
+                    <td th:text=*{titulo}></td>
+                    <td>
+                        <a th:if="${item.etiquetas.contains(etiqueta)}" th:href="@{/itens/{id}/etiquetas/{eid}/remove(id=${item.id}, eid=*{id})}">Remover</a>
+                        <a th:unless="${item.etiquetas.contains(etiqueta)}" th:href="@{/itens/{id}/etiquetas/{eid}/add(id=${item.id}, eid=*{id})}">Adicionar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

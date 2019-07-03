@@ -21,13 +21,17 @@ public class DemoApplication
 		Usuario usuario = new Usuario("Nome", "Descrição", "a", "a@a");
 		usuarioRepo.save(usuario);
 
-		Etiqueta etiqueta = new Etiqueta("Nome", "Descrição", "https://regrasdeetiqueta.com");
-		etiquetaRepo.save(etiqueta);
+		Etiqueta etiqueta1 = new Etiqueta("Nome", "Descrição", "https://regrasdeetiqueta.com");
+		etiquetaRepo.save(etiqueta1);
+		Etiqueta etiqueta2 = new Etiqueta("Label", "Description", "https://labelrules.com");
+		etiquetaRepo.save(etiqueta2);
+		Etiqueta etiqueta3 = new Etiqueta("Et.", "Desc.", "https://re.et.com");
+		etiquetaRepo.save(etiqueta3);
 
 		Item item = new Item("Título");
 		itemRepo.save(item);
 
-		item.addEtiqueta(etiqueta);
+		item.addEtiqueta(etiqueta1);
 		itemRepo.save(item);
 	}
 }

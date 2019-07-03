@@ -22,6 +22,9 @@ public class ItemController
     @Autowired
     ItemRepository itemRepo;
 
+    @Autowired
+    EtiquetaRepository etiquetaRepo;
+
     public Usuario getUsuario(HttpSession session)
     {
         Object id = session.getAttribute("userId");
@@ -129,5 +132,52 @@ public class ItemController
 		itemRepo.deleteById(id);
 
         return "redirect:/itens";
+    }
+
+    @RequestMapping("/{id}/etiquetas")
+    public ModelAndView etiquetas(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("item-etiquetas");
+        Item item = itemRepo.findById(id).get();
+        mv.addObject("item", item);
+        List<Etiqueta> etiquetas = etiquetaRepo.findAll();
+        mv.addObject("etiquetas", etiquetas);
+
+        return mv;
+    }
+
+    @RequestMapping("/{id}/etiquetas/{eid}/add")
+    public String etiquetasAdd(@PathVariable Long id, @PathVariable Long eid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
+
+        Item item = itemRepo.findById(id).get();
+        Etiqueta etiqueta = etiquetaRepo.findById(eid).get();
+        item.addEtiqueta(etiqueta);
+        itemRepo.save(item);
+
+        return "redirect:/itens/" + id + "/etiquetas";
+    }
+
+    @RequestMapping("/{id}/etiquetas/{eid}/remove")
+    public String etiquetasRemove(@PathVariable Long id, @PathVariable Long eid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
+
+        Item item = itemRepo.findById(id).get();
+        Etiqueta etiqueta = etiquetaRepo.findById(eid).get();
+        item.removeEtiqueta(etiqueta);
+        itemRepo.save(item);
+
+        return "redirect:/itens/" + id + "/etiquetas";
     }
 }

@@ -77,4 +77,8 @@ public class Item
     {
         this.etiquetas.add(etiqueta);
     }
+    public void removeEtiqueta(Etiqueta etiqueta)
+    {
+        this.etiquetas.remove(etiqueta);
+    }
 }
