@@ -1,5 +1,6 @@
 package br.ufjf.dcc193.t3.documentos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,6 +38,7 @@ public class Vinculo
 
     public Vinculo()
     {
+        this.etiquetas = new ArrayList<Etiqueta>();
     }
 
     public Long getId()
@@ -64,6 +66,14 @@ public class Vinculo
     public void setAnotacoes(List<Anotacao> anotacoes)
     {
         this.anotacoes = anotacoes;
+    }
+    public void addEtiqueta(Etiqueta etiqueta)
+    {
+        this.etiquetas.add(etiqueta);
+    }
+    public void removeEtiqueta(Etiqueta etiqueta)
+    {
+        this.etiquetas.remove(etiqueta);
     }
 
     public Item getItemOrigem()

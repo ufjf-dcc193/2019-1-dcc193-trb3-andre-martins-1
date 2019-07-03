@@ -2,10 +2,10 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Item - Vínculos</title>
+        <title>Vínculos</title>
     </head>
     <body>
-        <h1>Item - Vínculos</h1>
+        <h1>Vínculos</h1>
         <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / Vínculos<br />
         <br />
         <a th:href="@{/itens/{id}/vinculos/create(id=${id})}">Criar vínculo</a><br />
@@ -17,6 +17,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Item</th>
+                        <th>Anotações</th>
+                        <th>Etiquetas</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -24,6 +26,8 @@
                     <tr th:each="vinculos: ${vinculosOrigem}" th:object=${vinculos}>
                         <td><a th:text=*{id} th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}"></a></td>
                         <td><a th:href="@{/itens/{id}(id=*{itemDestino.id})}" th:text="*{itemDestino.titulo}"></a></td>
+                        <td><a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes(id=${id}, vid=*{id})}">Ver anotações</a></td>
+                        <td><a th:href="@{/itens/{id}/vinculos/{vid}/etiquetas(id=${id}, vid=*{id})}">Alterar etiquetas</a></td>
                         <td><a th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/delete(id=${id}, vid=*{id})}">Apagar</a></td>
                     </tr>
                 </tbody>
@@ -36,6 +40,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Item</th>
+                        <th>Anotações</th>
+                        <th>Etiquetas</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -43,6 +49,8 @@
                     <tr th:each="vinculos: ${vinculosDestino}" th:object=${vinculos}>
                         <td><a th:text=*{id} th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}"></a></td>
                         <td><a th:href="@{/itens/{id}(id=*{itemDestino.id})}" th:text="*{itemOrigem.titulo}"></a></td>
+                        <td><a th:href="@{/itens/{id}/vinculos/{vid}/anotacoes(id=${id}, vid=*{id})}">Ver anotações</a></td>
+                        <td><a th:href="@{/itens/{id}/vinculos/{vid}/etiquetas(id=${id}, vid=*{id})}">Alterar etiquetas</a></td>
                         <td><a th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/delete(id=${id}, vid=*{id})}">Apagar</a></td>
                     </tr>
                 </tbody>

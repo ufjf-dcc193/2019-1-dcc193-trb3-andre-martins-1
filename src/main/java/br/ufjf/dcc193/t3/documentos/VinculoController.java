@@ -113,50 +113,50 @@ public class VinculoController
         return "redirect:/itens/{id}/vinculos";
     }
 
-    // @RequestMapping("/{id}/etiquetas")
-    // public ModelAndView etiquetas(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @RequestMapping("/{vid}/etiquetas")
+    public ModelAndView etiquetas(@PathVariable Long id, @PathVariable Long vid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("vinculo-etiquetas");
-    //     Vinculo vinculo = vinculoRepo.findById(id).get();
-    //     mv.addObject("vinculo", vinculo);
-    //     List<Etiqueta> etiquetas = etiquetaRepo.findAll();
-    //     mv.addObject("etiquetas", etiquetas);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("vinculo-etiquetas");
+        Vinculo vinculo = vinculoRepo.findById(vid).get();
+        mv.addObject("vinculo", vinculo);
+        List<Etiqueta> etiquetas = etiquetaRepo.findAll();
+        mv.addObject("etiquetas", etiquetas);
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
-    // @RequestMapping("/{id}/etiquetas/{eid}/add")
-    // public String etiquetasAdd(@PathVariable Long id, @PathVariable Long eid, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @RequestMapping("/{vid}/etiquetas/{eid}/add")
+    public String etiquetasAdd(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long eid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     Vinculo vinculo = vinculoRepo.findById(id).get();
-    //     Etiqueta etiqueta = etiquetaRepo.findById(eid).get();
-    //     vinculo.addEtiqueta(etiqueta);
-    //     vinculoRepo.save(vinculo);
+        Vinculo vinculo = vinculoRepo.findById(vid).get();
+        Etiqueta etiqueta = etiquetaRepo.findById(eid).get();
+        vinculo.addEtiqueta(etiqueta);
+        vinculoRepo.save(vinculo);
 
-    //     return "redirect:/vinculos/{id}/etiquetas";
-    // }
+        return "redirect:/itens/{id}/vinculos/{vid}/etiquetas";
+    }
 
-    // @RequestMapping("/{id}/etiquetas/{eid}/remove")
-    // public String etiquetasRemove(@PathVariable Long id, @PathVariable Long eid, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @RequestMapping("/{vid}/etiquetas/{eid}/remove")
+    public String etiquetasRemove(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long eid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     Vinculo vinculo = vinculoRepo.findById(id).get();
-    //     Etiqueta etiqueta = etiquetaRepo.findById(eid).get();
-    //     vinculo.removeEtiqueta(etiqueta);
-    //     vinculoRepo.save(vinculo);
+        Vinculo vinculo = vinculoRepo.findById(vid).get();
+        Etiqueta etiqueta = etiquetaRepo.findById(eid).get();
+        vinculo.removeEtiqueta(etiqueta);
+        vinculoRepo.save(vinculo);
 
-    //     return "redirect:/vinculos/{id}/etiquetas";
-    // }
+        return "redirect:/itens/{id}/vinculos/{vid}/etiquetas";
+    }
 }

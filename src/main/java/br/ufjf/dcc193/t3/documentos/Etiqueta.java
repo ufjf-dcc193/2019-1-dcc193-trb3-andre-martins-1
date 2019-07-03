@@ -87,4 +87,17 @@ public class Etiqueta
     {
         this.itens.add(item);
     }
+
+    public List<Vinculo> getVinculos()
+    {
+        return vinculos;
+    }
+    public void setVinculo(List<Vinculo> vinculos)
+    {
+        this.vinculos = vinculos;
+    }
+    public void addVinculo(Vinculo vinculo)
+    {
+        this.vinculos.add(vinculo);
+    }
 }

@@ -57,6 +57,9 @@ public class DemoApplication
 		vinculo1.setItemOrigem(item1);
 		vinculo1.setItemDestino(item2);
 		vinculoRepo.save(vinculo1);
+		vinculo1.addEtiqueta(etiqueta2);
+		vinculo1.addEtiqueta(etiqueta3);
+		vinculoRepo.save(vinculo1);
 
 		Vinculo vinculo2 = new Vinculo();
 		vinculo2.setItemOrigem(item3);
