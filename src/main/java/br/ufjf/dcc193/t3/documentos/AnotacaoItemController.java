@@ -128,15 +128,15 @@ public class AnotacaoItemController
         return "redirect:/itens/{id}/anotacoes/{aid}";
     }
 
-    // @RequestMapping("/{id}/delete")
-    // public String delete(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @RequestMapping("/{aid}/delete")
+    public String delete(@PathVariable Long id, @PathVariable Long aid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-	// 	anotacaoRepo.deleteById(id);
+		anotacaoRepo.deleteById(aid);
 
-    //     return "redirect:/anotacoes";
-    // }
+        return "redirect:/itens/{id}/anotacoes";
+    }
 }
