@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Ver</title>
+    </head>
+    <body>
+        <h1>Item - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <span th:text="*{id}"></span><br />
+        <ul th:object="${item}">
+            <li>ID: <span th:text="*{id}"></span></li>
+            <li>Título: <span th:text="*{titulo}"></span></li>
+            <li>Etiquetas:
+                <ul>
+                    <li th:each="etiqueta: *{etiquetas}" th:text=${etiqueta.titulo}></li>
+                </ul>
+            </li>
+        </ul>
+        <a th:href="@{/itens/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/itens/{id}/delete(id=*{id})}">Apagar</a>
+    </body>
+</html>
