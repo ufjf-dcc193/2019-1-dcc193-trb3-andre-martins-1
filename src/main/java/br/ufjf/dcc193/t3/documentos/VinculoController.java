@@ -1,5 +1,7 @@
 package br.ufjf.dcc193.t3.documentos;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,30 +57,35 @@ public class VinculoController
         return mv;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView create(HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @RequestMapping("/create")
+    public ModelAndView create(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("vinculo-create");
-    //     mv.addObject("vinculo", new Vinculo());
-    //     return mv;
-    // }
+        List<Item> novosItems = itemRepo.findAll();
 
-    // @PostMapping("/create")
-    // public String create(Vinculo vinculo, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("vinculo-create");
+        mv.addObject("novosItens", novosItems);
+        return mv;
+    }
 
-    //     vinculoRepo.save(vinculo);
+    @RequestMapping("/create/{did}")
+    public String create(@PathVariable Long id, @PathVariable Long did, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     return "redirect:/vinculos";
-    // }
+        Vinculo vinculo = new Vinculo();
+        vinculo.setItemOrigem(itemRepo.findById(id).get());
+        vinculo.setItemDestino(itemRepo.findById(did).get());
+        vinculoRepo.save(vinculo);
+
+        return "redirect:/itens/{id}/vinculos";
+    }
 
     // @RequestMapping("/{id}")
     // public ModelAndView read(@PathVariable Long id, HttpSession session)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Vínculos - Criar</title>
+    </head>
+    <body>
+        <h1>Item - Vínculos - Criar</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / <a th:href="@{/itens/{id}/vinculos(id=*{id})}">Vínculos</a> / Criar<br />
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item: ${novosItens}" th:object=${item}>
+                    <td><a th:text=*{id} th:href="@{/itens/{id}(id=*{id})}"></a></td>
+                    <td th:text=*{titulo}></td>
+                    <td>
+                        <a th:href="@{/itens/{id}/vinculos/create/{did}(id=${id}, did=*{id})}">Vincular</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
