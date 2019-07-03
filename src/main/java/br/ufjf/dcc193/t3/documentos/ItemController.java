@@ -119,15 +119,15 @@ public class ItemController
         return "redirect:/itens/{id}";
     }
 
-    // @RequestMapping("/{id}/delete")
-    // public String delete(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @RequestMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-	// 	itemRepo.deleteById(id);
+		itemRepo.deleteById(id);
 
-    //     return "redirect:/itens";
-    // }
+        return "redirect:/itens";
+    }
 }
