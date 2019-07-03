@@ -6,9 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,30 +50,30 @@ public class ItemController
         return mv;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView create(HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @GetMapping("/create")
+    public ModelAndView create(HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return new ModelAndView("redirect:/usuarios/login");
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("item-create");
-    //     mv.addObject("item", new Item());
-    //     return mv;
-    // }
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("item-create");
+        mv.addObject("item", new Item());
+        return mv;
+    }
 
-    // @PostMapping("/create")
-    // public String create(Item item, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @PostMapping("/create")
+    public String create(Item item, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     itemRepo.save(item);
+        itemRepo.save(item);
 
-    //     return "redirect:/itens";
-    // }
+        return "redirect:/itens";
+    }
 
     // @RequestMapping("/{id}")
     // public ModelAndView read(@PathVariable Long id, HttpSession session)

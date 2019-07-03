@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Cadastrar</title>
+    </head>
+    <body>
+        <h1>Item - Cadastrar</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / Cadastrar<br />
+        <form th:action="@{/itens/create}" th:object=${item} method="POST">
+            <label>Título: <input name="titulo" type="text" th:value="*{titulo}" /></label><br />
+            <button type="submit">Cadastrar</button>
+        </form>
+    </body>
+</html>
