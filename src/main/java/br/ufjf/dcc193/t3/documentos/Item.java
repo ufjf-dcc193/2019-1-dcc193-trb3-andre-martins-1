@@ -1,8 +1,9 @@
 package br.ufjf.dcc193.t3.documentos;
 
+import java.util.ArrayList;
 import java.util.List;
 
-// import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Item
 
     private String titulo;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable
     private List<Etiqueta> etiquetas;
 
@@ -42,6 +43,8 @@ public class Item
     public Item(String titulo)
     {
         this.titulo = titulo;
+
+        this.etiquetas = new ArrayList<Etiqueta>();
     }
 
     public Long getId()
@@ -66,14 +69,12 @@ public class Item
     {
         return etiquetas;
     }
+    public void setEtiqueta(List<Etiqueta> etiquetas)
+    {
+        this.etiquetas = etiquetas;
+    }
     public void addEtiqueta(Etiqueta etiqueta)
     {
         this.etiquetas.add(etiqueta);
-    }
-    public void addEtiqueta(Etiqueta etiqueta, Boolean reverseAdd)
-    {
-        this.etiquetas.add(etiqueta);
-        if(reverseAdd)
-            etiqueta.addItem(this);
     }
 }

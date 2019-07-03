@@ -25,7 +25,9 @@ public class DemoApplication
 		etiquetaRepo.save(etiqueta);
 
 		Item item = new Item("Título");
-		item.addEtiqueta(new Etiqueta("Etiqueta", "Descrição da etiqueta", "https://etiquetas.com/about.html"), true);
+		itemRepo.save(item);
+
+		item.addEtiqueta(etiqueta);
 		itemRepo.save(item);
 	}
 }
