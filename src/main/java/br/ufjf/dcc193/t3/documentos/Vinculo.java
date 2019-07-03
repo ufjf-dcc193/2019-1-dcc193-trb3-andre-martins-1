@@ -29,11 +29,11 @@ public class Vinculo
 
     @ManyToOne
     @JoinColumn
-    private List<Vinculo> itemOrigem;
+    private Item itemOrigem;
 
     @ManyToOne
     @JoinColumn
-    private List<Vinculo> itemDestino;
+    private Item itemDestino;
 
     public Vinculo()
     {
@@ -66,20 +66,20 @@ public class Vinculo
         this.anotacoes = anotacoes;
     }
 
-    public List<Vinculo> getItemOrigem()
+    public Item getItemOrigem()
     {
         return itemOrigem;
     }
-    public void setItemOrigem(List<Vinculo> itemOrigem)
+    public void setItemOrigem(Item itemOrigem)
     {
         this.itemOrigem = itemOrigem;
     }
 
-    public List<Vinculo> getItemDestino()
+    public Item getItemDestino()
     {
         return itemDestino;
     }
-    public void setItemDestino(List<Vinculo> itemDestino)
+    public void setItemDestino(Item itemDestino)
     {
         this.itemDestino = itemDestino;
     }

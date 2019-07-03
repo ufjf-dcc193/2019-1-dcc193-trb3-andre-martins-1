@@ -87,4 +87,23 @@ public class Item
     {
         this.anotacoes = anotacoes;
     }
+
+    public List<Vinculo> getVinculosOrigem()
+    {
+        return vinculosOrigem;
+    }
+    public void setVinculosOrigem(List<Vinculo> vinculosOrigem)
+    {
+        this.vinculosOrigem = vinculosOrigem;
+    }
+
+    public List<Vinculo> getVinculosDestino()
+    {
+        return vinculosDestino;
+    }
+    public void setVinculosDestino(List<Vinculo> vinculosDestino)
+    {
+        this.vinculosDestino = vinculosDestino;
+    }
+
 }

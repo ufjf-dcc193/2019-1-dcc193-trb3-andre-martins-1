@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Item - Vínculos</title>
+    </head>
+    <body>
+        <h1>Item - Vínculos</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/itens}">Item</a> / <a th:href="@{/itens/{id}(id=*{id})}" th:text="*{id}"></a> / Vínculos<br />
+        <br />
+        <a th:href="@{/itens/{id}/vinculos/create(id=${id})}">Criar vínculo</a><br />
+
+        <section>
+            <h1>Origem</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Item</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vinculos: ${vinculosOrigem}" th:object=${vinculos}>
+                        <td><a th:text=*{id} th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}"></a></td>
+                        <td th:text=*{itemDestino.titulo}></td>
+                        <td><a th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/delete(id=${id}, vid=*{id})}">Apagar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h1>Destino</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Item</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vinculos: ${vinculosDestino}" th:object=${vinculos}>
+                        <td><a th:text=*{id} th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}"></a></td>
+                        <td th:text=*{itemOrigem.titulo}></td>
+                        <td><a th:href="@{/itens/{id}/vinculos/{vid}(id=${id}, vid=*{id})}">Ver</a> - <a th:href="@{/itens/{id}/vinculos/{vid}/delete(id=${id}, vid=*{id})}">Apagar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </body>
+</html>
