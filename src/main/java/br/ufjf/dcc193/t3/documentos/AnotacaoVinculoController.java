@@ -128,15 +128,15 @@ public class AnotacaoVinculoController
         return "redirect:/itens/{id}/vinculos/{vid}/anotacoes/{aid}";
     }
 
-    // @RequestMapping("/{aid}/delete")
-    // public String delete(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long aid, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
+    @RequestMapping("/{aid}/delete")
+    public String delete(@PathVariable Long id, @PathVariable Long vid, @PathVariable Long aid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-	// 	anotacaoRepo.deleteById(aid);
+		anotacaoRepo.deleteById(aid);
 
-    //     return "redirect:/itens/{id}/vinculos/{vid}/anotacoes";
-    // }
+        return "redirect:/itens/{id}/vinculos/{vid}/anotacoes";
+    }
 }
