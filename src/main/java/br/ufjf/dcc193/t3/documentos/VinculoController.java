@@ -101,47 +101,17 @@ public class VinculoController
         return mv;
     }
 
-    // @GetMapping("/{id}/update")
-    // public ModelAndView update(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return new ModelAndView("redirect:/usuarios/login");
+    @RequestMapping("/{vid}/delete")
+    public String delete(@PathVariable Long id, @PathVariable Long vid, HttpSession session)
+    {
+        Usuario usuario = getUsuario(session);
+        if (usuario == null)
+            return "redirect:/usuarios/login";
 
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("vinculo-update");
-    //     Vinculo vinculo = vinculoRepo.findById(id).get();
-    //     mv.addObject("vinculo", vinculo);
+		vinculoRepo.deleteById(vid);
 
-    //     return mv;
-    // }
-
-    // @PostMapping("/{id}/update")
-    // public String update(Vinculo vinculo, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
-
-    //     Vinculo oldVinculo = vinculoRepo.findById(vinculo.getId()).get();
-    //     oldVinculo.setTitulo(vinculo.getTitulo());
-
-    //     vinculoRepo.save(oldVinculo);
-
-    //     return "redirect:/vinculos/{id}";
-    // }
-
-    // @RequestMapping("/{id}/delete")
-    // public String delete(@PathVariable Long id, HttpSession session)
-    // {
-    //     Usuario usuario = getUsuario(session);
-    //     if (usuario == null)
-    //         return "redirect:/usuarios/login";
-
-	// 	vinculoRepo.deleteById(id);
-
-    //     return "redirect:/vinculos";
-    // }
+        return "redirect:/itens/{id}/vinculos";
+    }
 
     // @RequestMapping("/{id}/etiquetas")
     // public ModelAndView etiquetas(@PathVariable Long id, HttpSession session)
